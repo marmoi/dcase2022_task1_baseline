@@ -33,6 +33,8 @@ To setup Anaconda environment for the system use following:
 	pip install sed_eval
 	pip install pyyaml==5.3.1
     pip install dcase_util
+    pip install pandas
+
 
 Introduction
 ============
@@ -81,7 +83,7 @@ The computational complexity will be measured in terms of parameter count and MM
   of the target device class. The analysis segment length for the inference is 1 s.
   
 See detailed description how to calculate model size from [DCASE Challenge task description](https://dcase.community/challenge2022/task-low-complexity-acoustic-scene-classification). 
-Model calculation for Keras models is implemented in `model_size_calculation.py`
+Model calculation for TFLITE models is implemented using [nessi](https://github.com/AlbertoAncilotto/NeSsi) 
 
 The task specific baseline system is implemented in file `task1.py`.
 
@@ -258,7 +260,6 @@ The code is built on [dcase_util](https://github.com/DCASE-REPO/dcase_util) tool
       ├── task1.py                     # Baseline system for subtask A
       ├── task1.yaml                   # Configuration file for task1a.py
       |
-      ├── model_size_calculation.py     # Utility function for calculating model size 
       ├── utils.py                      # Common functions shared between tasks
       |
       ├── README.md                     # This file
