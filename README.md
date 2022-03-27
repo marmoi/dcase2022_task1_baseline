@@ -105,7 +105,7 @@ and the MACS count is 29.23 M.
 
 ###### Neural network
 
-- Input shape: 40 * 51 (1 seconds)
+- Input shape: 40 * 51 (1 second)
 - Architecture:
   - CNN layer #1
     - 2D Convolutional layer (filters: 16, kernel size: 7) + Batch normalization + ReLu activation
