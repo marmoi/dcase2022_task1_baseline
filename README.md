@@ -192,7 +192,7 @@ The cross-validation setup provided with the *TAU Urban Acoustic Scenes 2020 Mob
 | Traffic street    | 1.025    | 0.830 | 1.336 | 1.023 | 0.708 | 1.098 | 1.147 | 0.957 | 0.634 | 1.489 | 70.6%   |  
 | Tram              | 1.462    | 0.973 | 1.434 | 1.169 | 1.017 | 1.579 | 1.098 | 1.805 |2.176  | 1.903 | 44.6%   |  
 | -------------     | -------- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ------- |  
-| Average          | **1.575 **<br>(+/-0.018)| 1.109 | 1.439 | 1.374|  1.621 | 1.559 | 1.531 | 1.813|  1.800|  1.931 |  **42.9%**<br>(+/-0.770)|  
+| Average          | **1.575**<br>(+/-0.018)| 1.109 | 1.439 | 1.374|  1.621 | 1.559 | 1.531 | 1.813|  1.800|  1.931 |  **42.9%**<br>(+/-0.770)|  
                                                                                 
 
 **Note:** The reported system performance is not exactly reproducible due to varying setups. However, you should be able obtain very similar results.
