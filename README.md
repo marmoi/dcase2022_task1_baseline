@@ -257,13 +257,14 @@ The code is built on [dcase_util](https://github.com/DCASE-REPO/dcase_util) tool
 ### File structure
 
       .
-      ├── task1.py                     # Baseline system for subtask A
-      ├── task1.yaml                   # Configuration file for task1a.py
+      ├── task1.py                                              # Baseline system for subtask A
+      ├── task1.yaml                                            # Configuration file for task1a.py
       |
-      ├── utils.py                      # Common functions shared between tasks
+      ├── utils.py                                              # Common functions shared between tasks
+      ├── TAUUrbanAcousticScenes_2022_Mobile_DevelopmentSet.py  # File for the dataset
       |
-      ├── README.md                     # This file
-      └── requirements.txt              # External module dependencies
+      ├── README.md                                             # This file
+      └── requirements.txt                                      # External module dependencies
 
 Changelog
 =========
