@@ -176,7 +176,7 @@ and the MACS count is 29.23 M.
   
 #### Results for development dataset
 
-The cross-validation setup provided with the *TAU Urban Acoustic Scenes 2020 Mobile Development dataset* is used to evaluate the performance of the baseline system. Results are calculated using TensorFlow in GPU mode (using Nvidia Tesla V100 GPU card). Because results produced with GPU card are generally non-deterministic, the system was trained and tested 10 times, and mean and standard deviation of the performance from these 10 independent trials are shown in the results tables.
+The cross-validation setup provided with the *TAU Urban Acoustic Scenes 2022 Mobile Development dataset* is used to evaluate the performance of the baseline system. Results are calculated using TensorFlow in GPU mode (using Nvidia Tesla V100 GPU card). Because results produced with GPU card are generally non-deterministic, the system was trained and tested 10 times, and mean and standard deviation of the performance from these 10 independent trials are shown in the results tables.
  
 
 | Scene label       | Log Loss |   A   |   B   |   C   |   S1  |   S2  |   S3  |   S4  |   S5  |   S6  | Accuracy|  
