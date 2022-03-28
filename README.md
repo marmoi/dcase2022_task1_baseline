@@ -131,44 +131,40 @@ and the MACS count is 29.23 M.
     _________________________________________________________________
 	Layer (type)                 Output Shape              Param #   
 	=================================================================
-	conv2d (Conv2D)              (None, 40, 51, 16)        800       
+	conv2d_1                     (None, 40, 51, 16)        800       
 	_________________________________________________________________
-	batch_normalization (BatchNo (None, 40, 51, 16)        64        
+	batch_normalization_1        (None, 40, 51, 16)        64        
 	_________________________________________________________________
-	activation (Activation)      (None, 40, 51, 16)        0         
+	activation_1                 (None, 40, 51, 16)        0         
 	_________________________________________________________________
-	conv2d_1 (Conv2D)            (None, 40, 51, 16)        12560     
+	conv2d_2                     (None, 40, 51, 16)        12560     
 	_________________________________________________________________
-	batch_normalization_1 (Batch (None, 40, 51, 16)        64        
+	batch_normalization_2        (None, 40, 51, 16)        64        
 	_________________________________________________________________
-	activation_1 (Activation)    (None, 40, 51, 16)        0         
+	activation_2                 (None, 40, 51, 16)        0         
 	_________________________________________________________________
-	max_pooling2d (MaxPooling2D) (None, 8, 10, 16)         0         
+	max_pooling2d_1              (None, 8, 10, 16)         0         
 	_________________________________________________________________
-	dropout (Dropout)            (None, 8, 10, 16)         0         
+	dropout_1                    (None, 8, 10, 16)         0         
 	_________________________________________________________________
-	conv2d_2 (Conv2D)            (None, 8, 10, 32)         25120     
+	conv2d_3                     (None, 8, 10, 32)         25120     
 	_________________________________________________________________
-	batch_normalization_2 (Batch (None, 8, 10, 32)         128       
+	batch_normalization_3        (None, 8, 10, 32)         128       
 	_________________________________________________________________
-	activation_2 (Activation)    (None, 8, 10, 32)         0         
+	activation_3                 (None, 8, 10, 32)         0         
 	_________________________________________________________________
-	max_pooling2d_1 (MaxPooling2 (None, 2, 1, 32)          0         
+	max_pooling2d_2              (None, 2, 1, 32)          0         
 	_________________________________________________________________
-	dropout_1 (Dropout)          (None, 2, 1, 32)          0         
+	dropout_2                    (None, 2, 1, 32)          0         
 	_________________________________________________________________
-	flatten (Flatten)            (None, 64)                0         
+	flatten_1                    (None, 64)                0         
 	_________________________________________________________________
-	dense (Dense)                (None, 100)               6500      
+	dense_1                      (None, 100)               6500      
 	_________________________________________________________________
-	dropout_2 (Dropout)          (None, 100)               0         
+	dropout_3                    (None, 100)               0         
 	_________________________________________________________________
-	dense_1 (Dense)              (None, 10)                1010      
+	dense_2                      (None, 10)                1010      
 	=================================================================
-	Total params: 46,246
-	Trainable params: 46,118
-  	Non-trainable params: 128
-  	_________________________________________________________________
 
      Input shape                     : (None, 40, 51, 1)
      Output shape                    : (None, 10)
@@ -202,7 +198,7 @@ The cross-validation setup provided with the *TAU Urban Acoustic Scenes 2022 Mob
 
  TFLite acoustic model
 
-Tensor information (weights excluded):
+Tensor information (weights excluded, grouped by layer type):
 
 
 | Id |               Tensor               |      Shape      | Size in RAM (B) |
@@ -236,7 +232,6 @@ Operator execution schedule:
 |              Identity              |         [0, 20]         |             50 |          0 |      0 |
 
 
-Current peak memory usage: 65,280 B
 Total MACs: 29,234,920
 Total weight size: 46,512
 
