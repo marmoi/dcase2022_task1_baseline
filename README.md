@@ -53,6 +53,12 @@ building their approach on the baseline system could potentially make their code
 accessible to the community. DCASE organizers strongly encourage participants to share
 their code in any form after the challenge.
 
+### Data preparation
+    |
+    ├── task1_features.yaml   # Parameters for the prepare_data.py file
+    ├── prepare_data.py       # Code to extract features from 1 second files
+    └── create_h5.py          # Code to create the features_all.h5 file
+
 Description
 ========
 
