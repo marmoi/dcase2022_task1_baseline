@@ -45,7 +45,7 @@ defaults:
 
   feature_extractor:
     method: mel
-    fs: 22050
+    fs: 44100
 
   feature_extractor_method_parameters:
     mel:
