@@ -104,11 +104,6 @@ def main(argv):
         paths=list(param['path'].values())
     )
 
-    # Setup logging
-    dcase_util.utils.setup_logging(
-        logging_file=os.path.join(param.get_path('path.log'), 'task1a_v2.log')
-    )
-
     # Get logging interface
     log = dcase_util.ui.ui.FancyLogger()
 
@@ -134,13 +129,6 @@ def main(argv):
         param.update_parameter_set(parameter_set)
 
         # Get dataset and initialize
-
-        # Can not be downloaded so just load it
-        # db = dcase_util.datasets.Dataset(
-        #     name=param.get_path('dataset.parameters.dataset'),
-        #     data_path=param.get_path('path.dataset'),
-        #     storage_name='TAU-urban-acoustic-scenes-2022-mobile-development',
-        #     meta_filename='meta.csv')
 
         storage_name='TAU-urban-acoustic-scenes-2022-mobile-development'
         db_local = os.listdir(os.path.join(param.get_path('path.dataset'),'audio'))

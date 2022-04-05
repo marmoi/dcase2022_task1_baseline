@@ -4,7 +4,6 @@ import argparse
 import h5py
 import time
 import pandas as pd
-import dcase_util
 from utils import float32_to_int16
 import config
 
@@ -39,7 +38,7 @@ def pack_audio_files_to_hdf5(args):
     source_label = audios_dir['source_label']
 
     # Path of the output file
-    packed_hdf5_path = os.path.join(output_dir,'features_all.h5')
+    packed_hdf5_path = os.path.join(output_dir,'features.h5')
 
     meta_dict = {
         'filename': np.array(audio_names),
@@ -98,18 +97,12 @@ def pack_audio_files_to_hdf5(args):
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description='')
-    subparsers = parser.add_subparsers(dest='mode')
 
     # Calculate feature for all audio files
-    parser_pack_audio = subparsers.add_parser('pack_audio_files_to_hdf5')
-    parser_pack_audio.add_argument('--dataset_file', type=str, required=True, help='csv file with all the dataset.')
-    parser_pack_audio.add_argument('--workspace', type=str, required=True, help='Directory of your workspace.')
+    parser.add_argument('--dataset_file', type=str, required=True, help='csv file with all the dataset.')
+    parser.add_argument('--workspace', type=str, required=True, help='Directory of your workspace.')
 
     # Parse arguments
     args = parser.parse_args()
 
-    if args.mode == 'pack_audio_files_to_hdf5':
-        pack_audio_files_to_hdf5(args)
-
-    else:
-        raise Exception('Incorrect arguments!')
+    pack_audio_files_to_hdf5(args)
