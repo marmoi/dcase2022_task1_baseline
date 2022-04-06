@@ -14,7 +14,6 @@ import numpy
 import sed_eval
 from utils import *
 import tensorflow as tf
-from IPython import embed
 from TAUUrbanAcousticScenes_2022_Mobile_DevelopmentSet import TAUUrbanAcousticScenes_2022_Mobile_DevelopmentSet
 
 __version_info__ = ('1', '0', '0')
@@ -63,6 +62,13 @@ def main():
     # Set application mode
     application_mode = 'dev'
 
+    # Select iteration id for model
+    if args.iteration:
+        iteration_mode = args.iteration
+
+    else:
+        iteration_mode = 0
+
     # Get overwrite flag
     if overwrite is None:
         overwrite = param.get_path('general.overwrite')
@@ -74,7 +80,7 @@ def main():
 
     # Setup logging
     dcase_util.utils.setup_logging(
-        logging_file=os.path.join(param.get_path('path.log'), 'task1a_v2.log')
+        logging_file=os.path.join(param.get_path('path.log'), 'task1.log')
     )
 
     # Get logging interface
@@ -143,7 +149,9 @@ def main():
                 folds=active_folds,
                 param=param,
                 log=log,
-                overwrite=overwrite,
+                iteration=iteration_mode,
+                overwrite=overwrite
+
             )
 
             timer.stop()
@@ -166,7 +174,9 @@ def main():
                 folds=active_folds,
                 param=param,
                 log=log,
+                iteration=iteration_mode,
                 overwrite=overwrite
+
             )
 
             timer.stop()
@@ -211,7 +221,8 @@ def main():
             do_model_size_calculation(
                 folds=active_folds,
                 param=param,
-                log=log
+                log=log,
+                iteration=iteration_mode
             )
             log.foot(
                 time=timer.elapsed(),
@@ -220,7 +231,7 @@ def main():
     return 0
 
 
-def do_learning(db, folds, param, log, overwrite=False):
+def do_learning(db, folds, param, log, iteration, overwrite=False):
     """Learning stage
 
     Parameters
@@ -261,7 +272,7 @@ def do_learning(db, folds, param, log, overwrite=False):
 
         fold_model_filename = os.path.join(
             param.get_path('path.application.learner'),
-            'model.tflite'
+            'model_{}.tflite'.format(str(iteration))
         )
         if not os.path.isfile(fold_model_filename) or overwrite:
             log.line()
@@ -434,7 +445,7 @@ def do_learning(db, folds, param, log, overwrite=False):
 
             # Quantization to int8
             # A generator that provides a representative dataset
-            batch_generator = BatchGenerator('features_all.h5', batch_size=100)
+            batch_generator = BatchGenerator(param.get_path('features.path'), batch_size=100)
             # Quantization to int8
             converter = tf.lite.TFLiteConverter.from_keras_model(keras_model)
             converter.optimizations = [tf.lite.Optimize.DEFAULT] # converts to int32
@@ -453,7 +464,7 @@ def do_learning(db, folds, param, log, overwrite=False):
     return processed_files
 
 
-def do_testing(db, scene_labels, folds, param, log, overwrite=False):
+def do_testing(db, scene_labels, folds, param, log, iteration, overwrite=False):
     """Testing stage
 
     Parameters
@@ -495,7 +506,7 @@ def do_testing(db, scene_labels, folds, param, log, overwrite=False):
         # Get model filename
         fold_model_filename = os.path.join(
             param.get_path('path.application.learner'),
-            'model.tflite'
+            'model_{}.tflite'.format(str(iteration))
         )
 
         # Load the model into an interpreter
@@ -526,16 +537,12 @@ def do_testing(db, scene_labels, folds, param, log, overwrite=False):
             # Loop through all test files from the current cross-validation fold
             test_files = db.test(fold=fold)
             index_files = get_index(param, test_files)
-            features, _, filenames = get_data('features_all.h5', index_files)
+            features, _, filenames = get_data(param.get_path('features.path'), index_files)
             for i, feat in enumerate(features):
                 # Get feature filename
                 filename = filenames[i]
                 feat = np.expand_dims(feat, 0).astype(input_details["dtype"])
                 input_data = tf.expand_dims(feat, -1)
-
-                if len(input_details['shape']) == 4:
-                    # Add channel
-                    input_data = np.expand_dims(input_data, 0).astype(input_details["dtype"])
 
                 # Get network output
                 interpreter.set_tensor(input_details['index'], input_data)
@@ -895,7 +902,7 @@ def do_evaluation(db, param, log, application_mode='default'):
 
 
 
-def do_model_size_calculation(folds, param, log):
+def do_model_size_calculation(folds, param, log, iteration):
     """Model size calculation stage
 
     Parameters
@@ -927,7 +934,7 @@ def do_model_size_calculation(folds, param, log):
         # Get model filename
         fold_model_filename = os.path.join(
             param.get_path('path.application.learner'),
-            'model.tflite'
+            'model_{}.tflite'.format(str(iteration))
         )
 
 

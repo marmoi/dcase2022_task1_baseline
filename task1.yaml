@@ -32,6 +32,9 @@ defaults:
       recognizer: recognizer
       evaluator: evaluator
 
+  features:
+    path: ../features_all.h5
+
   dataset:
     method: baseline_development
 

@@ -33,9 +33,10 @@ To setup Anaconda environment for the system use following:
 	pip install librosa
 	pip install absl-py==0.9.0
 	pip install sed_eval
-	pip install pyyaml==5.3.1
+	pip install pyyaml==5.4
     pip install dcase_util
     pip install pandas
+    pip install pyparsing==2.2.0
 
 
 Introduction
