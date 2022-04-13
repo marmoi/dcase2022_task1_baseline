@@ -87,7 +87,7 @@ major classes used in this subtask. The dataset contains in total 40 hours of au
 For a more detailed description see [DCASE Challenge task description](https://dcase.community/challenge2022/task-low-complexity-acoustic-scene-classification).
 
 The computational complexity will be measured in terms of parameter count and MMACs (million multiply-accumulate operations).
-- Maximum number of parameters 128K, for **ALL** parameters, and the used variable type is fixed into **INT8**.
+- Maximum number of parameters 128000, for **ALL** parameters, and the used variable type is fixed into **INT8**.
 - Maximum number of MACS per inference: 30 MMAC (million MACs). The limit is approximated based on the computing power 
   of the target device class. The analysis segment length for the inference is 1 s.
   
