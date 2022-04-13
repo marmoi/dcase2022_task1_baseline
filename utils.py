@@ -495,7 +495,7 @@ def load_data(unique_words, files, param, split):
     Y = []
     index_files = getIndex(param, files)
     # Get files from h5
-    features, labels, _ = get_data('features_all.h5', index_files)
+    features, labels, _ = get_data(param.get_path('features.path'), index_files)
     for lab in labels:
         if split == 'Train':
             Y.append(smooth_labels(create_one_hot_encoding(lab, unique_words)))

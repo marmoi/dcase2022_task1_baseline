@@ -24,7 +24,7 @@ defaults:
     active_fold_list: !!null
 
   path:
-    dataset: dataset
+    dataset: ../dataset
     log: log/
     application:
       base: system/task1

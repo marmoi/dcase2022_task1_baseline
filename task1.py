@@ -15,6 +15,7 @@ import sed_eval
 from utils import *
 import tensorflow as tf
 from TAUUrbanAcousticScenes_2022_Mobile_DevelopmentSet import TAUUrbanAcousticScenes_2022_Mobile_DevelopmentSet
+from IPython import embed
 
 __version_info__ = ('1', '0', '0')
 __version__ = '.'.join(__version_info__)
@@ -62,13 +63,6 @@ def main():
     # Set application mode
     application_mode = 'dev'
 
-    # Select iteration id for model
-    if args.iteration:
-        iteration_mode = args.iteration
-
-    else:
-        iteration_mode = 0
-
     # Get overwrite flag
     if overwrite is None:
         overwrite = param.get_path('general.overwrite')
@@ -103,6 +97,7 @@ def main():
     timer = dcase_util.utils.Timer()
 
     for parameter_set in parameters_sets:
+
         # Set parameter set
         param['active_set'] = parameter_set
         param.update_parameter_set(parameter_set)
@@ -149,7 +144,6 @@ def main():
                 folds=active_folds,
                 param=param,
                 log=log,
-                iteration=iteration_mode,
                 overwrite=overwrite
 
             )
@@ -174,7 +168,6 @@ def main():
                 folds=active_folds,
                 param=param,
                 log=log,
-                iteration=iteration_mode,
                 overwrite=overwrite
 
             )
@@ -222,7 +215,6 @@ def main():
                 folds=active_folds,
                 param=param,
                 log=log,
-                iteration=iteration_mode
             )
             log.foot(
                 time=timer.elapsed(),
@@ -231,7 +223,7 @@ def main():
     return 0
 
 
-def do_learning(db, folds, param, log, iteration, overwrite=False):
+def do_learning(db, folds, param, log, overwrite=False):
     """Learning stage
 
     Parameters
@@ -272,7 +264,7 @@ def do_learning(db, folds, param, log, iteration, overwrite=False):
 
         fold_model_filename = os.path.join(
             param.get_path('path.application.learner'),
-            'model_{}.tflite'.format(str(iteration))
+            'model.tflite'
         )
         if not os.path.isfile(fold_model_filename) or overwrite:
             log.line()
@@ -464,7 +456,7 @@ def do_learning(db, folds, param, log, iteration, overwrite=False):
     return processed_files
 
 
-def do_testing(db, scene_labels, folds, param, log, iteration, overwrite=False):
+def do_testing(db, scene_labels, folds, param, log, overwrite=False):
     """Testing stage
 
     Parameters
@@ -506,7 +498,7 @@ def do_testing(db, scene_labels, folds, param, log, iteration, overwrite=False):
         # Get model filename
         fold_model_filename = os.path.join(
             param.get_path('path.application.learner'),
-            'model_{}.tflite'.format(str(iteration))
+            'model.tflite'
         )
 
         # Load the model into an interpreter
@@ -902,7 +894,7 @@ def do_evaluation(db, param, log, application_mode='default'):
 
 
 
-def do_model_size_calculation(folds, param, log, iteration):
+def do_model_size_calculation(folds, param, log):
     """Model size calculation stage
 
     Parameters
@@ -934,7 +926,7 @@ def do_model_size_calculation(folds, param, log, iteration):
         # Get model filename
         fold_model_filename = os.path.join(
             param.get_path('path.application.learner'),
-            'model_{}.tflite'.format(str(iteration))
+            'model.tflite'
         )
 
 
