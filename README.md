@@ -1,4 +1,4 @@
-DCASE2021 - Task 1 A - Baseline systems
+DCASE2022 - Task 1 A - Baseline systems
 -------------------------------------
 
 Author:
