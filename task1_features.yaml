@@ -1,7 +1,7 @@
 active_set: dcase2022_baseline
 
 sets:
-  # DCASE2021 baseline, subtask A
+  # DCASE2022 task 1 baseline
   # ================================
   - set_id: dcase2022_baseline
     desciption: DCASE2022 baseline

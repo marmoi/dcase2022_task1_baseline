@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# DCASE 2021
-# Task 1A: low-complexity ASC with Multiple Devices
+# DCASE 2022
+# Task 1: low-complexity ASC with Multiple Devices
 # Prepare data
 # ---------------------------------------------
 # Author: Irene Martin Morato
@@ -35,7 +35,7 @@ def main(argv):
     args, overwrite = handle_application_arguments(
         app_parameters=param,
         raw_parameters=parameters,
-        application_title='Task 1A: prepare data',
+        application_title='Task 1: prepare data',
         version=__version__
     )
 
@@ -108,7 +108,7 @@ def main(argv):
     log = dcase_util.ui.ui.FancyLogger()
 
     # Log title
-    log.title('DCASE2022 Task1A -- prepare data - feature extraction')
+    log.title('DCASE2022 Task1 -- prepare data - feature extraction')
     log.line()
 
     if args.show_results:
@@ -129,11 +129,9 @@ def main(argv):
         param.update_parameter_set(parameter_set)
 
         # Get dataset and initialize
-
-        storage_name='TAU-urban-acoustic-scenes-2022-mobile-development'
         db_local = os.listdir(os.path.join(param.get_path('path.dataset'),'audio'))
         db_local.sort()
-        active_folds = ['all_data']
+
 
         if param.get_path('flow.feature_extraction'):
             # Feature extraction stage

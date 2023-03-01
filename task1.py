@@ -16,6 +16,8 @@ from utils import *
 import tensorflow as tf
 from TAUUrbanAcousticScenes_2022_Mobile_DevelopmentSet import TAUUrbanAcousticScenes_2022_Mobile_DevelopmentSet
 from IPython import embed
+from codecarbon import EmissionsTracker
+
 
 __version_info__ = ('1', '0', '0')
 __version__ = '.'.join(__version_info__)
@@ -40,7 +42,7 @@ def main():
     args, overwrite = handle_application_arguments(
         app_parameters=param,
         raw_parameters=parameters,
-        application_title='Task 1A: low-complexity Acoustic Scene Classification',
+        application_title='Task 1: low-complexity Acoustic Scene Classification',
         version=__version__
     )
 
@@ -81,7 +83,7 @@ def main():
     log = dcase_util.ui.ui.FancyLogger()
 
     # Log title
-    log.title('DCASE2022 / Task1A -- low-complexity Acoustic Scene Classification')
+    log.title('DCASE2022 / Task1 -- low-complexity Acoustic Scene Classification')
     log.line()
 
     if args.show_results:
