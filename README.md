@@ -1,4 +1,4 @@
-DCASE2022 - Task 1 A - Baseline systems
+DCASE2022 - Task 1 - Baseline systems
 -------------------------------------
 
 Author:
@@ -11,7 +11,7 @@ Adaptations from the original code DCASE2020 - Task 1 by
 Getting started
 ===============
 
-1. Clone repository from [Github](https://github.com/marmoi/dcase2021_task1a_baseline).
+1. Clone repository from [Github](https://github.com/marmoi/dcase2022_task1_baseline).
 2. Install requirements with command: `pip install -r requirements.txt`.
 3. Extract features from the audio files previously downloaded `python prepare_data.py`.
 4. Create a .h5 file with the extracted features. 
@@ -42,7 +42,10 @@ To setup Anaconda environment for the system use following:
 Introduction
 ============
 
-This is the baseline system for the Low-Complexity Acoustic Scene Classification in Detection and Classification of Acoustic Scenes and Events 2022 (DCASE2022) challenge. The system is intended to provide a simple entry-level state-of-the-art approach that gives reasonable results. The baseline system is built on [dcase_util](https://github.com/DCASE-REPO/dcase_util) toolbox (>=version 0.2.16). 
+This is the baseline system for the Low-Complexity Acoustic Scene Classification in Detection
+and Classification of Acoustic Scenes and Events 2022 (DCASE2022) challenge. 
+The system is intended to provide a simple entry-level state-of-the-art approach that gives reasonable results.
+The baseline system is built on [dcase_util](https://github.com/DCASE-REPO/dcase_util) toolbox (>=version 0.2.16). 
 
 Participants can build their own systems by extending the provided baseline system. 
 The system is very simple, it does not handle dataset download or feature extraction, 
@@ -67,7 +70,8 @@ Description
 
 ### Task 1 - Low-Complexity Acoustic Scene Classification 
 
-[TAU Urban Acoustic Scenes 2022 Mobile Development dataset](https://zenodo.org/record/6337421) is used as development dataset for this task.
+[TAU Urban Acoustic Scenes 2022 Mobile Development dataset](https://zenodo.org/record/6337421) is used as
+development dataset for this task.
 
 This subtask is concerned with the basic problem of acoustic scene classification, 
 in which it is required to classify a test audio recording into one of ten known acoustic
@@ -77,7 +81,7 @@ of different devices, and will use audio data recorded and simulated with a vari
 Recordings in the dataset were made with three devices (A, B and C) that captured audio
 simultaneously and 6 simulated devices (S1-S6). Each acoustic scene has 14400 segments
 recorded with device A (main device) and 1080 segments of parallel audio each recorded
-with devices B,C, and S1-S6. The dataset contains in total 64 hours of audio.
+with devices B, C, and S1-S6. The dataset contains in total 64 hours of audio.
 For a more detailed description see [DCASE Challenge task description](https://dcase.community/challenge2022/task-low-complexity-acoustic-scene-classification).
 
 The task targets low complexity solutions for the classification problem in terms of
@@ -250,7 +254,7 @@ Usage
 
 For the subtask there are two separate application (.py file):
 
-- `task1.py`, DCASE2022 baseline for Task 1A, with TFLite model quantization
+- `task1.py`, DCASE2022 baseline for Task 1, with TFLite model quantization
 
 
 Code
