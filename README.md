@@ -201,7 +201,7 @@ The cross-validation setup provided with the *TAU Urban Acoustic Scenes 2022 Mob
 | Traffic street    | 1.025    | 0.830 | 1.336 | 1.023 | 0.708 | 1.098 | 1.147 | 0.957 | 0.634 | 1.489 | 70.6%   |  
 | Tram              | 1.462    | 0.973 | 1.434 | 1.169 | 1.017 | 1.579 | 1.098 | 1.805 |2.176  | 1.903 | 44.6%   |  
 | -------------     | -------- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ------- |  
-| Average          | **1.575**<br>(+/-0.018)| 1.109 | 1.439 | 1.374|  1.621 | 1.559 | 1.531 | 1.813|  1.800|  1.931 |  **42.9%**<br>(+/-0.770)|  
+| Average          | **1.575**<br>(+/-0.018)| 1.109 | 1.439 | 1.374|  1.621 | 1.559 | 1.531 | 1.813|  1.800|  1.931 |  **42.9%**<br>(+/-0.770)  
                                                                                 
 
 **Note:** The reported system performance is not exactly reproducible due to varying setups. However, you should be able obtain very similar results.
@@ -248,14 +248,44 @@ Operator execution schedule:
 Total MACs: 29,234,920
 Total weight size: 46,512
 
+## Energy consumption during the training and evaluation phase
+
+Energy consumption for 1 run on a NVIDIA V100-PCIE-16Gb for a training phase and an inference phase on the development set.
+Calculated using [code carbon](https://mlco2.github.io/codecarbon/usage.html#)
+
+|          | Training (kWh) | Dev-test (Kwh) |
+|----------|----------------|----------------|
+| Baseline | 0.210          | 0.068          |
 
 Usage
 =====
 
-For the subtask there are two separate application (.py file):
+For the task there is (.py file):
 
 - `task1.py`, DCASE2022 baseline for Task 1, with TFLite model quantization
 
+
+Calculate energy consumption
+=====
+
+In order to account for potential hardware difference, the participants have to report the energy consumption measured while loading the baseline code, loading eval files and get predictions (on their hardware).
+Therefore, we provide a .tflite model trained with all the development data `model_task1.tflite`.
+
+- `task1_inference.py`, loads the given model and runs inference for the eval data.
+
+	```python
+	# Creates the carbon instance and start the count
+	tracker_test_eval = EmissionsTracker("DCASE Task 1 EVAL", output_dir=path_codecarbon)
+    tracker_test_eval.start()
+	...
+	# your code (e.g. load model, run inference)
+    ...
+	tracker_test_eval.stop() # Stop counter
+	tracker_test_eval._total_energy.kWh # Get energy value
+	```
+
+- Evaluation data has to be previously downloaded and the feature extraction step has to be performed.
+- It takes about 2h and 40 min to go through all the evaluation files.
 
 Code
 ====
@@ -269,8 +299,16 @@ The code is built on [dcase_util](https://github.com/DCASE-REPO/dcase_util) tool
       ├── task1.yaml                                            # Configuration file for task1a.py
       |
       ├── utils.py                                              # Common functions shared between tasks
+	  ├── config.py												# Feature parameters and data path
       ├── TAUUrbanAcousticScenes_2022_Mobile_DevelopmentSet.py  # File for the dataset
+	  ├── prepare_data.py										# File to perfom feature extraction
+	  ├── task1_features.yaml									# Configureation file for prepare_data.py
+	  ├── create_h5.py											# File to create .h5 with the extracted features  
       |
+	  ├── task1_inference.py                                    # File to load baseline-trained model 
+      ├── model_task1.tflite									# baseline-trained model
+	  |
+	  |
       ├── README.md                                             # This file
       └── requirements.txt                                      # External module dependencies
 
