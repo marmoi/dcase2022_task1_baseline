@@ -15,7 +15,7 @@ Getting started
 2. Install requirements with command: `pip install -r requirements.txt`.
 3. Extract features from the audio files previously downloaded `python prepare_data.py`.
 4. Create a .h5 file with the extracted features. 
-   - `python create_h5.py --dataset_file='/TAUUrbanAcousticScenes_2022_Mobile_DevelopmentSet/meta.csv' --workspace='path'`.   
+   - `python create_h5.py --dataset_file='/TAUUrbanAcousticScenes_2022_Mobile_DevelopmentSet/meta.csv' --workspace='path' --data_type='dev'`.   
 5. Run the task specific application with default settings for model quantization `python task1.py` or  `./task1.py`
 
 
@@ -285,6 +285,7 @@ Therefore, we provide a .tflite model trained with all the development data `mod
 	```
 
 - Evaluation data has to be previously downloaded and the feature extraction step has to be performed.
+   - `python create_h5.py --dataset_file='/TAUUrbanAcousticScenes_2022_Mobile_EvaluationSet/meta.csv' --workspace='path' --data_type='eval'`. 
 - It takes about 2h and 40 min to go through all the evaluation files.
 
 Code
